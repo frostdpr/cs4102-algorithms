@@ -1,0 +1,133 @@
+\documentclass[12pt]{extarticle}
+\usepackage[utf8]{inputenc}
+%% Package that allows for  hyperlinks
+\usepackage{hyperref}
+%% lsting package is normally used for code
+\usepackage{listings}
+
+
+
+\title{Algorithms Assignment 1 }
+
+\author{Your name here \& Computing ID}
+\date{}
+
+
+
+\documentclass[10pt]{article}
+\usepackage[colorlinks,urlcolor=blue]{hyperref}
+\usepackage[osf]{mathpazo}
+\usepackage{amsmath,amsfonts,graphicx}
+\usepackage{latexsym}
+\usepackage[top=1in,bottom=1.4in,left=1.25in,right=1.25in,centering,letterpaper]{geometry}
+\usepackage{color}
+\definecolor{mdb}{rgb}{0.05,0.3,0.22} 
+\definecolor{cit}{rgb}{0.05,0.2,0.45} 
+\pagestyle{myheadings}
+\usepackage{clrscode}
+\usepackage{url}
+
+\newenvironment{proof}{\par\noindent{\it Proof.}\hspace*{1em}}{$\Box$\bigskip}
+\newcommand{\handout}{
+   \renewcommand{\thepage}{Homework \hnumber~- page \arabic{page}}
+   \noindent
+   \begin{center}
+      \vbox{
+    \hbox to \columnwidth {\sc{\course} \hfill}
+    \vspace{-2mm}
+    \hbox to \columnwidth {\sc due \MakeLowercase{\duedate} \duelocation\hfill {\Huge\color{mdb}H\hnumber:\yourid}}
+      }
+   \end{center}
+   \vspace*{1mm}
+   \hrule
+   \vspace*{1mm}
+    {\footnotesize \textbf{Collaboration Policy:} You are encouraged to collaborate with up to 4 other students, but all work submitted must be your own independently written solution. List the names of all of your collaborators. Do not seek published solutions for any assignments. If you use any published resources when completing this assignment, be sure to cite them. Do not submit a solution that you are unable to explain orally to a member of the course staff.
+   \vspace*{1mm}
+    \hrule
+    \vspace*{2mm}
+    \noindent
+    \textbf{Collaborators}: \collabs\\
+    \textbf{Sources}: \sources}
+    \vspace*{2mm}
+    \hrule
+    \vskip 2em
+}
+\newcommand{\solution}[1]{\medskip\noindent\textbf{Solution:}#1}
+\newcommand{\bit}[1]{\{0,1\}^{ #1 }}
+%\dontprintsemicolon
+%\linesnumbered
+\newtheorem{problem}{\sc\color{cit}problem}
+\newtheorem{practice}{\sc\color{cit}practice}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\begin{document}
+
+\maketitle
+
+%---------change this every homework
+\def\collabs{Robin, Alfred Pennyworth, Burnelle, Hott}
+\def\sources{Adams, The Hitchhiker's Guide to the Galaxy; Cormen, et al, Introduction to Algorithms}
+% -----------------------------------------------------
+\def\duedate{Wednesday, January 30 at 11p}
+\def\duelocation{via Collab}
+\def\hnumber{1}
+\def\course{{cs4102 - algorithms - spring 2019}}%------
+%-------------------------------------
+
+%----Begin your modifications here
+\vspace{3mm}
+
+
+
+\section{Introduction}
+This assignment is shared between algorithms sections.\\
+Credit: Assit Prof. Brunelle \& Assit Prof.  Hott 
+
+\begin{problem}Asymptotic\end{problem}
+    Prove or disprove each of the following conjectures.  For 4-6, let $f(n)$ and $g(n)$ be asymptotically positive functions.  
+    \begin{enumerate}    
+        \item $2^{n+1} = O(2^n)$.
+        \item $2^{2n} = O(2^n)$.
+        \item Given that: $\forall \varepsilon>0, \ \log(n) = o(n^{\varepsilon})$, 
+
+        \noindent show:
+        
+        $\forall \varepsilon, k >0, \ \log^{k}(n) = o(n^{\varepsilon})$
+    \end{enumerate}
+
+
+\begin{problem}Solving Recurrences\end{problem}
+Prove a (as tight as possible) $O$ (big-Oh) asymptotic bound on the following recurrences. You may use any base cases you'd like.
+\begin{enumerate}
+    \item $T(n)=4 T(\frac{n}{3}) + n \log n$
+    \item $T(n)=3 T(\frac{n}{3} - 2) + \frac{n}{2}$
+    \item $T(n)=2T(\sqrt{n}) + n$
+\end{enumerate}
+
+
+\begin{problem} Where is Batman when you need him? \end{problem}
+As the newly-hired commissioner of the Gotham City Police Department, James Gordon's first act is to immediately fire all of the dirty cops, stamping out Gotham's widespread police corruption. To do this, Commissioner Gordon must first figure out which officers are honest and which are dirty. There are $n$ officers in the department. The majority ($> n/2$) of the officers are honest, and every officer knows whether or not each other officer is dirty. He will identify the dirty cops by asking the officers, in pairs, to indicate whether the other is dirty. Honest officers will always answer truthfully, dirty cops may answer arbitrarily. Thus the following responses are possible:
+
+\begin{tabular}{lll}
+Officer A & Officer B & Implication \\
+\hline
+``B is honest'' & ``A is honest'' & Either both are honest or both are dirty \\
+``B is honest'' & ``A is dirty'' & At least one is dirty \\
+``B is dirty'' & ``A is honest'' & At least one is dirty \\
+``B is dirty'' & ``A is dirty'' & At least one is dirty
+\end{tabular}
+
+\begin{enumerate}
+    \item A group of $n$ officers is uncorrupted if more than half are honest. Suppose we start with an uncorrupted group of $n$ officers. Describe a method that uses only $\lfloor n/2 \rfloor$ pair-wise tests between officers to find a smaller uncorrupted group of at most $\lceil n/2 \rceil$ officers. Prove that your method satisfies each of the three requirements.
+    
+    \item Using this approach, devise an algorithm that identifies which officers are honest and which are dirty using only $\Theta(n)$ pairwise tests. Prove the correctness of your algorithm, and prove that only $\Theta(n)$ tests are used.
+    
+    \item Prove that a conspiracy of $\lfloor n/2 \rfloor + 1$ dirty officers (who may share a plan) can foil \emph{any} attempt to find a honest officer. I.e., not only will method above not work, but that there is no way \emph{at all} for Commissioner Gordon to identify even one honest officer if there is not an honest majority.
+
+\end{enumerate}
+
+\begin{problem} Karatsuba Example \end{problem}
+Illustrate the Karatsuba algorithm on $20194102 \times 37591056$. Use 2-digit multiplication as your base case.
+
+\end{document}
+\end{document}
